@@ -1,0 +1,20 @@
+<%= form_tag(sessions_path, method: "post") do %>
+
+<% if @errors %>
+    <div id="errors">
+      <h2><%= pluralize(@errors.count, "error") %> prevented this login.</h2>
+      <ul>
+        <% @errors.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  </div>
+<% end %>
+
+<%= label_tag(:email) %>
+<%= email_field_tag(:email) %>
+<%= label_tag(:password) %>
+<%= password_field_tag(:password) %>
+<%= submit_tag("Log In") %>
+
+<% end %>

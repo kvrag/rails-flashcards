@@ -1,2 +1,12 @@
 <h1>here is a card</h1>
 <%= @card.question %>
+
+<%= form_tag(guess_path, method: "post") do %>
+  <%= hidden_field_tag :card_id, value: @card.id %>
+  <%= label_tag :answer %>
+  <%= text_field_tag :answer %>
+  <%= submit_tag "Submit Guess" %>
+<% end %>
+
+
+

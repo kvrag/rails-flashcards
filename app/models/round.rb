@@ -15,4 +15,8 @@ class Round < ApplicationRecord
   def when_played
     self.updated_at.localtime
   end
+
+  def card_arr
+    self.deck.cards
+  end
 end

@@ -1,6 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :deck
-  belongs_to :guess
+  has_many :guesses
 
   validates :question, :answer, presence: true
 end

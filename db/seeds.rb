@@ -1,8 +1,8 @@
-require 'parser'
+require_relative 'parser'
 
 # Reading all text files in decks folder to build flashcard decks out of.
 Dir.foreach('./db/decks') do |file|
-  next if file == '.' || file == '..' || file =='.DS_Store'
+  next if file == '.' || file == '..' || file == '.DS_Store'
   deck = Deck.create(name: file[0...-4].split('_').join(' ').capitalize)
   cards = Parser.parse("./db/decks/#{file}")
 
@@ -10,6 +10,7 @@ Dir.foreach('./db/decks') do |file|
     new_card = Card.new(card)
     new_card.deck = deck
     new_card.save
+    p new_card
   end
 end
 

@@ -4,14 +4,8 @@ class DecksController < ApplicationController
   end
 
   def show
-    if session[:round_id] && session[:deck_id] == params[:id]
-      redirect_to round_path(@round)
-    else
-      session[:round_id] = nil
-      session[:cards] = Deck.find(params[:id]).cards.map { |card| card.id }
-      session[:cards].shuffle!
-      session[:deck_id] = params[:id]
-      redirect_to new_round_path
-    end
+    session[:round_id] = nil
+    session[:deck_id] = params[:id]
+    redirect_to new_round_path
   end
 end

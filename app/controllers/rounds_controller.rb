@@ -2,7 +2,7 @@ class RoundsController < ApplicationController
 
   def new
     if session[:round_id]
-      redirect "/rounds/#{session[:round_id]}"
+      redirect_to round_path(@round)
     else
       @round = Round.new
       @round.deck = Deck.find(session[:deck_id])
@@ -13,7 +13,7 @@ class RoundsController < ApplicationController
       end
       @round.save
       session[:round_id] = @round.id
-      redirect_to @round
+      redirect_to round_path(@round)
     end
   end
 
@@ -21,8 +21,8 @@ class RoundsController < ApplicationController
     if session[:cards].empty?
       redirect_to current_user
     else
-      random_card = Card.find(session[:cards].first)
-      redirect_to random_card
+      @card = Card.find(session[:cards].first)
+      redirect_to @card
     end
   end
 end

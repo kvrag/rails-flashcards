@@ -6,5 +6,9 @@ Rails.application.routes.draw do
   delete '/sessions' => 'sessions#destroy'
   get '/session_helper' => 'pages#session_helper'
 
-  resources :users
+  resources :users, :guesses, :rounds
+
+  resources :decks do
+    resources :cards
+  end
 end
